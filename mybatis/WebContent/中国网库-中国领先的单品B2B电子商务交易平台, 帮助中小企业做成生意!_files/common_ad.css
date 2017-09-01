@@ -1,0 +1,41 @@
+﻿.fudong {
+	position: fixed;
+	top: 261px;
+	margin-left: 1190px;
+	width: 80px;
+	height: 288px;
+	background: url(../imagesv3/fudong.jpg) no-repeat;
+	cursor: pointer;
+}
+
+.fudong-animate {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 85px;
+	background-color: #ef3244;
+	z-index: 999999;
+}
+
+.fudong-animate .animate-wrap {
+	position: relative;
+	margin: 0 auto;
+	width: 1190px;
+	height: 85px;
+}
+
+.fudong-animate .animate-wrap img {
+	width: 1190px;
+	height: 85px;
+}
+
+.fudong-animate .animate-wrap i {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 13px;
+	height: 13px;
+	background: url(../imagesv3/fudong_animate_close.png) no-repeat center;
+	cursor: pointer;
+}

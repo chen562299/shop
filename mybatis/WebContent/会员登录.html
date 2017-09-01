@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style media="screen"></style>
+
+<meta property="qc:admins" content="714426121547716611114636">
+<meta property="wb:webmaster" content="0b87b98a572bf732">
+<title>会员登录</title>
+<base href="">
+ 
+<link href="./会员登录_files/base_v3.0.css" rel="stylesheet" type="text/css">
+<link href="./会员登录_files/top_v3.0.css" rel="stylesheet" type="text/css">
+<link href="./会员登录_files/newMain.css" rel="stylesheet" type="text/css">
+ 	
+<script src="./会员登录_files/hm.js"></script><script type="text/javascript" src="./会员登录_files/member-login.js"></script>
+<script type="text/javascript" src="./会员登录_files/dd_belatedpng.js"></script>
+<script type="text/javascript" src="./会员登录_files/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="./会员登录_files/security.js"></script>
+<script type="text/javascript" src="./会员登录_files/md5.js"></script>
+<script type="text/javascript">
+	var doucDomain="99114.com";
+    document.domain = doucDomain;
+	if(top != self){ 
+		var parentUrl=parent.window.location+"";
+		if(parentUrl.indexOf("center"+doucDomain)!=-1){
+			var centerPath = encodeURIComponent("http://center"+doucDomain+"/member");
+			var url ="http://checkin"+doucDomain+"/login?service="+centerPath+"&source=1";
+			parent.window.location.replace(url);
+		}else if(parentUrl.indexOf("menu"+doucDomain)!=-1){
+			var centerPath = encodeURIComponent("http://menu"+doucDomain+"/");
+			var url ="http://checkin"+doucDomain+"/login?service="+centerPath+"&source=1";
+			parent.window.location.replace(url);
+		}
+	}  
+</script>
+<link rel="stylesheet" href="./会员登录_files/layer.css" id="layuicss-skinlayercss"></head>
+
+<body>
+<input type="hidden" id="proPath" value="">
+<input type="hidden" id="domain" value="">
+
+<form id="fm1" class="formbox" action="" method="post" onsubmit="return checkSubmit()">
+
+
+
+<!-- 头部 start -->
+		<div class="D-header-wrap">
+			<div class="D-header">
+				<div class="D-logo clearfix">
+						
+						<a href="#">
+							 <img alt="" src="./会员登录_files/wKgGTFhE2KOALrUhAAAg218EAH0882.png">
+						</a>	
+						 <span>会员登录</span>
+							
+				</div>
+				<div class="D-adv">
+					<a 请输入元素属性="" href="#" target=""><img width="378" height="61" src="./会员登录_files/wKgGSFl6ztWAeFv1AAAto6LRz-M177.jpg" alt="请输入图片描述" title="请输入图片描述"></a>
+
+				</div>
+			</div>
+		</div>
+	<!-- 头部 end -->
+	<!-- 中间 start -->
+		
+		<a id="loginUrl" target="_blank" href="#">
+			<div class="D-main-wrap" id="loginBander" style="background: url(会员登录_files/wKgGSFmdNV-AIt4BAAJXONt59qU039.jpg) center no-repeat;"></div>
+		</a>
+	
+	<!-- 中间 end -->
+	
+
+	<!-- 登录框 start -->
+	<div class="D-login-wrap">
+		<input type="hidden" name="lt" value="LT-782201-jHtINpYerw6AnrS3y9LeS23PqGbXXr">
+		<input type="hidden" name="execution" value="e1s1">
+		<input type="hidden" name="_eventId" value="submit">
+		<div class="D-wechat">
+             <ul>
+                 <li class="on"><img src="./会员登录_files/wechat.png" alt=""></li>
+                 <li class=""><img src="./会员登录_files/icon2.png" alt=""></li>
+             </ul>
+         </div>
+		<div class="D-login-div">
+            <div class="D-login" style="display:block;">
+				<h3>会员登录
+				</h3>
+				<!--错误提示-->
+				<div id="verifymsg" class="D-hint-error" style="display: none;"></div>
+				
+				<div class="D-input-wrap mt40">
+					<div class="user_img"></div>
+					<input id="username" name="username" tabindex="1" placeholder="会员名／邮箱／手机号" type="text" value="" size="25" autocomplete="false">
+				</div>
+				<div class="D-input-wrap">
+					<div class="pwd_img"></div>
+					<input id="password" name="password" tabindex="2" placeholder="设置密码" type="password" value="" size="25" autocomplete="off">
+				</div>
+				<div class="D-input-wrap" id="wangkuverify" style="display: none;">
+					<span class="yzm_t">验证码：</span>
+					<input id="vcode" name="vcode" class="D-verify" tabindex="3" type="text" value="" size="8" autocomplete="false">
+                     <img id="rcodeimageId" src="./会员登录_files/getVcode" onclick="codeImage()" class="rcodeimageId" style="width:90px;height:30;vertical-align:middle;cursor: pointer;">
+				</div>
+				<p class="textR">
+					<!-- <input name="rememberMe" id="rememberMe" value="true" type="checkbox"/>记住我的登录状态 -->
+					<a class="c_08e" href="#">忘记密码</a>
+					<a class="register ml10" href="">免费注册</a>
+				</p>
+				<p>
+					<span class="D-submit btn_disabled" id="butlogin_disabled">登    录</span>
+					<input id="butlogin" class="D-submit none " value="登    录" accesskey="l" tabindex="4" type="submit">
+				</p>
+				<div class="third_login_tit">
+					<span></span><p>微信扫码直接登录</p><span></span>
+					<img class="J-wechat" style="cursor: pointer;" src="./会员登录_files/wx_logo.png">
+				</div>
+			</div>
+			<div class="D-login" style="display:none;">
+				
+				<div class="J-sm-before">
+	
+					<div class="J-wx-app">
+					<div class="sm_tit">微信扫码，免输入更速度</div>
+					<div class="code_box">
+						<div>
+							<iframe src="about:blank" frameborder="0" scrolling="no" style="width: 300px;position: absolute;left: 50%;margin-left: -150px;">
+                    		</iframe>
+						</div>
+                    </div>
+                    <div class="sm_tit2">
+						<img class="sm_icon J-sm-icon" src="./会员登录_files/sm_icon.png" alt="">打开微信，扫描二维码进行登录
+					</div>
+                </div>
+	                <div class="no_account">
+		                <span>没有账号</span>
+		                <a href="http://member.99114.com/login/gotoRegister?backUrl=http://www.99114.com/login/toIndex?siteId=1&service=file:///C:/Users/bwfadmin/Desktop/%E7%BD%91%E9%A1%B5/%E4%B8%AD%E5%9B%BD%E7%BD%91%E5%BA%93-%E4%B8%AD%E5%9B%BD%E9%A2%86%E5%85%88%E7%9A%84%E5%8D%95%E5%93%81B2B%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E4%BA%A4%E6%98%93%E5%B9%B3%E5%8F%B0,%20%E5%B8%AE%E5%8A%A9%E4%B8%AD%E5%B0%8F%E4%BC%81%E4%B8%9A%E5%81%9A%E6%88%90%E7%94%9F%E6%84%8F!.html&siteId=1" target="_blank">免费注册</a>
+	                </div>
+            	</div> 
+			</div>
+		</div>
+	</div>
+	<!-- 登录框 end -->
+
+	<!-- 尾部 start -->
+	<div id="J-footer-wrap" class="D-footer-wrap clearfix ">
+        <div class="fl">
+            <p style="color: #555">
+            	<a href="http://about.99114.com/" target="_blank">关于网库</a> | 
+<a href="http://about.99114.com/contact/us.shtml" target="_blank">联系我们</a> | 
+<a href="http://about.99114.com/legal.shtml" target="_blank">法律声明</a> | 
+<a href="http://adver.99114.com/" target="_blank">营销中心</a> | 
+<a href="http://dpt.99114.com/" target="_blank">单品通</a> | 
+<a href="http://zhuanti.99114.com/singleproductfair/productfair150/index.html" target="_blank">单品交易会</a> | 
+<a href="http://shop.99114.com/" target="_blank">店铺大全</a> | 
+<a href="http://zhuanti.99114.com/zthz/index.html" target="_blank">专题汇总</a> | 
+<a href="http://www.99114.com/sitemap.html" target="_blank">网站导航</a> | 
+<a href="http://mail.99114.com/" target="_blank">集团邮箱</a> | 
+<a href="http://about.99114.com/join/social.shtml" target="_blank">诚聘英才</a> | 
+<a href="http://about.99114.com/links.shtml" target="_blank">友情链接</a> | 
+<a href="http://www.99114.com/juhe/" target="_blank">全站聚合</a>
+
+            </p>
+            <p>版权所有：<span id="copyrightSapn">中国网库</span> &nbsp;&nbsp;ICP：<span id="icp">京ICP备08102099号-10</span></p>
+            <p>地址：<span id="addressSapn">北京市东城区胜古中路甲一号蓝宝商务大厦402号</span> &nbsp;&nbsp; 电话：<span id="telSpan">010-64429077</span></p>
+            <p>传真：<span id="faxSpan">010-64451032</span>  &nbsp;&nbsp; 邮箱：<span id="emailSpan">kfb@99114.com</span></p>
+        </div>
+        <div class="fr clearfix">
+            <div class="fl ">
+                <img class="code_img" src="./会员登录_files/dpt_code.png" alt="">
+                <span class="code_t">下载单品通APP</span>
+            </div>
+            <div class="fl ml30">
+                <img class="code_img" src="./会员登录_files/wx_code.png" alt="">
+                <span class="code_t">扫码微信咨询</span>
+            </div>
+        </div>
+    </div>	
+<!-- 尾部 end -->
+<
+			<!--后添加-->
+			<div class="service_rcon_b wechat2">
+				<div class="wechat2-con J-wechat2-con" style="display: none;"><a href=""><img src="./会员登录_files/weixin.jpg" alt=""></a></div>
+				<div class="service2_rcon_wx mt8">
+					<ul class="list_bottom">
+						<li><span>官方微信：</span><a class="wechat2_a J-wechat2_a" href="javascript:void(0)"><img src="./会员登录_files/weixin.png" alt=""></a></li>
+					</ul>
+				</div>
+			</div>
+			<!--后添加end-->
+			<ul class="service_rcon_b">
+				<li>服务时间：<b>9:00-18:00</b></li>
+				<li>官方邮箱：<b>kfb@99114.com</b></li>
+			</ul>
+			<a href="http://help.99114.com/" class="message_btn" target="_blank">帮助中心</a>
+		</div>
+	</div>
+</div>
+
+ 
+</form>
+<script type="text/javascript" src="./会员登录_files/jquery.min.js"></script>
+<script type="text/javascript" src="./会员登录_files/layer.js" language="javascript"></script><!--弹框插件-->
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f160a8c6f9e75fcc0c45d38950c1b318";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script type="text/javascript">
+//展示页面的时候用来判断是否要显示验证码  非0就要显示
+var isVcode = "";
+//用来判断验证码是否已显示
+var is_show_yzm=0;
+//显示验证码
+if(isVcode != "0" && isVcode!=""){
+	is_show_yzm=1;
+	$("#wangkuverify").show();
+}else{
+	is_show_yzm=0;
+	$("#vcode").val(""); 
+}
+var weixin_pc = "";
+if(weixin_pc!="" && weixin_pc.length>0){
+	$("#verifymsg").text("您未绑定微信号,绑定后可直接微信扫码登陆!");
+	$("#verifymsg").show();
+}
+//登陆提交判断
+function checkSubmit(){
+	var name = $("#username").val();
+	var pwd = $("#password").val();
+	var vcode = $("#vcode").val();
+	$("#verifymsg").hide();
+	$("#msg").hide();
+	//判断用户输入的数据是否为空
+	if(name=="" || pwd==""){
+		$("#verifymsg").text("必须录入用户名密码!");
+		$("#verifymsg").show().delay(3000).hide(10);
+		return false;
+	}
+	//判断当前用户登录登陆环境下是否需要填写验证码 非0 就要填写验证码
+	var flg = "0";
+	$.ajax({
+		url:"checkName.jsp",
+		type:'post',    
+	    cache:false,
+	    async : false,
+	    data:{name:name},
+	    dataType:'json',
+		success:function(data){
+		  flg=data.msg;
+		}
+	});
+
+	//非0    并且验证码为空的时候 
+	if(flg!="0" && vcode=="" ){
+		var msg="";
+		if(flg=="1" || flg=="3"){
+			msg="请输入验证码!";
+		}else if(flg=="2"){
+			msg="您的登陆环境有变化、请输入验证码!";
+		}else if(flg=="4"){
+			msg="账户登陆异常、请输入验证码!";
+		}
+		
+		$("#verifymsg").text(msg);
+		$("#verifymsg").show();
+		$("#wangkuverify").show();
+		
+		is_show_yzm = 1;
+		return false;
+	}
+	
+	//非0  并且验证码为空的时候 
+	if(is_show_yzm==1 && vcode==""){
+		$("#verifymsg").text("请输入验证码!");
+		$("#verifymsg").show();
+		return false;
+	}else{
+		$("#butlogin").removeClass("login_btn");
+		$("#butlogin").addClass("login_btn_on");
+		var result = hex_md5(pwd);
+		var pwdt=0;
+		$.ajax({
+			url:"checkPwd.jsp",
+			type:'post',    
+		    cache:false,
+		    async : false,
+		    data:{"account":name,"pwd":result},
+		    dataType:'text',
+			success:function(data){
+				pwdt=data;
+			}
+		});
+		if(pwdt==1){
+			var num_no = /(?![a-zA-Z]+$)(?![0-9]+$)[0-9a-zA-Z][A-Za-z0-9]{5,15}/;  
+			if (num_no.test(pwd) == false ){ 
+				layer.open({
+					title:'密码升级',
+					type: 2,
+					area: ['510px','405px'],
+					shadeClose: false,
+					end: function () {
+						$("#password").val("");
+			        },
+					content: '/modifypwd/pwd.jsp?account='+name//这里content是一个URL
+				});
+				return false;
+			}
+		}
+		$("#password").val(result); 
+		return true;
+	}
+}
+</script>
+
+<script src="./会员登录_files/wxLogin.js"></script>
+<script type="text/javascript" src="./会员登录_files/newlogin.js"></script>
+<script type="text/javascript" src="./会员登录_files/beautifyform.js"></script><!--表单美化-->
+<script type="text/javascript" src="./会员登录_files/jquery.qrcode.min.js"> 
+<script type="text/javascript">
+    $(document).ready(function(){
+		$('.D-wechat ul li').on('click', function (){
+			$(this).removeClass('on').siblings().addClass('on');
+			var index = $(this).index();
+			$('.D-login-div>div').eq(index).hide().siblings().show();
+		});
+
+		$('#help').hover(function(){
+			$("#qr_code").show();
+			$("#login_container").hide();
+		},function(){
+			$("#qr_code").hide();
+			$("#login_container").show();
+		})
+        /*-------------表单美化-------------------*/
+        $('input').customInput();
+	});
+</script>
+ 
+
+
+</body></html>

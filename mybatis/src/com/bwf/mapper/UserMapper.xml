@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 
+  
+<mapper namespace="com.bwf.mapper.UserMapper">
+
+	<resultMap type="com.bwf.bean.User" id="getUserAllMap">
+	<result column="id"  property="userId"/>
+	</resultMap>
+  
+  <select id="getUserAll" resultMap="getUserAllMap">
+  	select * from userInfo 
+  </select>
+  
+   <select id="getUserById"   resultMap="getUserAllMap">
+  	select * from userInfo where id=#{id}
+  </select>
+   
+
+
+  <insert id="getAddUser" parameterType="com.bwf.bean.User" >
+  	<selectKey keyProperty="userId" keyColumn="userId" resultType="int" order="AFTER">
+  	select LAST_INSERT_ID()
+  	</selectKey>
+     INSERT INTO userInfo (userName,userPsw,id) VALUES (#{userName},#{userPsw},DEFAULT);
+  </insert>
+
+  
+ 
+
+</mapper>
