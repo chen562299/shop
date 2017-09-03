@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.bwf.bean.Oder;
 import com.bwf.bean.User;
 import com.bwf.mapper.UserMapper;
 import com.bwf.service.UserService;
@@ -30,9 +31,7 @@ public class Test {
 			//SqlSessionFactory sqf= MybatisUtil.getFactory();
 			
 			//session创建
-			SqlSession sqls=MybatisUtil.getFactory().openSession();
-			UserMapper userMapper= sqls.getMapper(UserMapper.class);
-			
+
 			UserService userService=new UserServiceImpl();
 			
 //			List<User> users =userService.getUserAll();
@@ -42,23 +41,27 @@ public class Test {
 		//	User user=userService.getUserById(2);
 			///System.out.println(user.toString());
 		
+			List<Oder> oders= userService.getSelectUserOder();
+			
+			for(Oder oder:oders){
+				System.out.println(oder.toString());
+				
+			}
+//			User adduser=new User();
+//			adduser.setUserName("222");
+//			adduser.setUserPsw("张");
+//			System.out.println(adduser.toString());
+//			if(userService.getAddUser(adduser)){
+//				System.out.println("添加成功");
+//			}else{
+//				System.out.println("添加失败");
+//			};
 			
 			
-			User adduser=new User();
-			adduser.setUserName("222");
-			adduser.setUserPsw("张");
-			System.out.println(adduser.toString());
-			if(userService.getAddUser(adduser)){
-				System.out.println("添加成功");
-			}else{
-				System.out.println("添加失败");
-			};
 			
 			
 			
-			
-			
-			sqls.close();
+
 		
 			
 			//sqls.close();

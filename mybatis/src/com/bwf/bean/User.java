@@ -1,17 +1,25 @@
 package com.bwf.bean;
 
-public class User {
+public class User extends Oder{
 	
-	private String userName;
 	
-	private String userPsw;
+	
+
    
 	private int userId;
-	
+	private String userName;
+	private String userPsw;
 	private String  userImage;
 	
 	private String session;
 	
+
+	public User(){};
+
+
+
+
+
 	public String getUserImage() {
 		return userImage;
 	}

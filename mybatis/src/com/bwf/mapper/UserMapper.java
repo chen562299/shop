@@ -2,6 +2,7 @@ package com.bwf.mapper;
 
 import java.util.List;
 
+import com.bwf.bean.Oder;
 import com.bwf.bean.User;
 
 public interface UserMapper {
@@ -11,5 +12,7 @@ public interface UserMapper {
 	public User getUserById(int id);
 
 	public int getAddUser(User adduser);
+
+	public List<Oder> getSelectUserOder();
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.bwf.bean.Oder;
 import com.bwf.bean.User;
 import com.bwf.dao.UserDao;
 import com.bwf.dao.UserDaoImpl;
@@ -36,6 +37,12 @@ public class UserServiceImpl implements UserService {
 			return true;
 			}
 		return false;
+	}
+
+	@Override
+	public List<Oder> getSelectUserOder() {
+		return userDao.getSelectUserOder();
+		
 	}
 	
 

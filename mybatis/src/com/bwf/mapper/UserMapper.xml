@@ -12,6 +12,20 @@
 	</resultMap>
 	-->
   
+   <resultMap type="com.bwf.bean.Oder" id="getUserOderMap">
+  	<id  column="oderId"  property="oderId"/>
+  	<result  column="oderTime"  property="oderTime"/>
+  	
+  	<association property="user" javaType="com.bwf.bean.User">
+  		<id  column="userId" property="userId" />
+  		<result column="userName" property="userName"/>
+  	</association>
+  </resultMap>
+  
+     <select id="getSelectUserOder" resultMap="getUserOderMap">
+     SELECT oder.*,userinfo.userName FROM oder INNER JOIN userinfo 
+   </select>
+  
   <select id="getUserAll" resultType="com.bwf.bean.User">
   	select * from userInfo 
   </select>
@@ -19,6 +33,11 @@
    <select id="getUserById"  resultType="com.bwf.bean.User" >
   	select * from userInfo where userId=#{userId}
   </select>
+  
+ 
+   
+
+   
    
 
 
