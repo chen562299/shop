@@ -6,23 +6,24 @@
  
   
 <mapper namespace="com.bwf.mapper.UserMapper">
-
-	<resultMap type="com.bwf.bean.User" id="getUserAllMap">
+    <!-- 默认有一个空的构造方法，当有构造方法，需要创建一个无参构造 -->
+	<!--  <resultMap type="com.bwf.bean.User" id="getUserAllMap">
 	<result column="id"  property="userId"/>
 	</resultMap>
+	-->
   
-  <select id="getUserAll" resultMap="getUserAllMap">
+  <select id="getUserAll" resultType="com.bwf.bean.User">
   	select * from userInfo 
   </select>
   
-   <select id="getUserById"   resultMap="getUserAllMap">
+   <select id="getUserById"  resultType="com.bwf.bean.User" >
   	select * from userInfo where id=#{id}
   </select>
    
 
 
   <insert id="getAddUser" parameterType="com.bwf.bean.User" >
-  	<selectKey keyProperty="userId" keyColumn="userId" resultType="int" order="AFTER">
+  	<selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
   	select LAST_INSERT_ID()
   	</selectKey>
      INSERT INTO userInfo (userName,userPsw,id) VALUES (#{userName},#{userPsw},DEFAULT);

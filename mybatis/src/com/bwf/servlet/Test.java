@@ -46,7 +46,7 @@ public class Test {
 			
 			User adduser=new User();
 			adduser.setUserName("222");
-			adduser.setUserPsw("2312323");
+			adduser.setUserPsw("张");
 			System.out.println(adduser.toString());
 			if(userService.getAddUser(adduser)){
 				System.out.println("添加成功");
