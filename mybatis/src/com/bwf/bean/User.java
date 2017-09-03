@@ -9,7 +9,7 @@ public class User extends Oder{
 	private String session;
 
 	
-
+        private int x;
 
 
 	public String getUserImage() {
