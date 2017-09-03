@@ -18,19 +18,7 @@ import com.bwf.util.MybatisUtil;
 public class Test {
 	public static void main(String[] args) {
 		try {
-			
-			//InputStream in= Resources.getResourceAsStream("mybatis.xml");
-			
-			
-			
-			//SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
-			
-			//SqlSession sqlSession=sqlSessionFactory.openSession();
-			
-			//工厂创建
-			//SqlSessionFactory sqf= MybatisUtil.getFactory();
-			
-			//session创建
+
 
 			UserService userService=new UserServiceImpl();
 			
