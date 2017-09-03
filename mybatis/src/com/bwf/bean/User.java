@@ -6,7 +6,7 @@ public class User {
 	
 	private String userPsw;
    
-	private int id;
+	private int userId;
 	
 	private String  userImage;
 	
@@ -31,25 +31,13 @@ public class User {
 		this.session = session;
 	}
 
-
-	public String getClassId() {
-		return classId;
-	}
-
-
-	public void setClassId(String classId) {
-		this.classId = classId;
-	}
-
-	private String  classId;
-
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 	
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -69,11 +57,7 @@ public class User {
 	}
 
 
-	@Override
-	public String toString() {
-		return "User [userName=" + userName + ", userPsw=" + userPsw + ", id=" + id + ", userImage=" + userImage
-				+ ", session=" + session + ", classId=" + classId + "]";
-	}
+	
 
 
 

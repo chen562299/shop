@@ -17,16 +17,16 @@
   </select>
   
    <select id="getUserById"  resultType="com.bwf.bean.User" >
-  	select * from userInfo where id=#{id}
+  	select * from userInfo where userId=#{userId}
   </select>
    
 
 
   <insert id="getAddUser" parameterType="com.bwf.bean.User" >
-  	<selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+  	<selectKey keyProperty="userId" keyColumn="userId" resultType="int" order="AFTER">
   	select LAST_INSERT_ID()
   	</selectKey>
-     INSERT INTO userInfo (userName,userPsw,id) VALUES (#{userName},#{userPsw},DEFAULT);
+     INSERT INTO userInfo (userName,userPsw,userId) VALUES (#{userName},#{userPsw},DEFAULT);
   </insert>
 
   

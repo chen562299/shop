@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean getAddUser(User adduser) {
 		if(userDao.getAddUser(adduser)>0){
+			
 			return true;
 			}
 		return false;

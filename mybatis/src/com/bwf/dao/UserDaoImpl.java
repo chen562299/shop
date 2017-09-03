@@ -28,9 +28,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int getAddUser(User adduser) {
-		
-		return userMapper.getAddUser(adduser);
+	public int getAddUser(User adduser) {	
+		int x=userMapper.getAddUser(adduser);
+		sqls.commit();
+		return x;
 	}
 
 }
