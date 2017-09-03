@@ -22,13 +22,7 @@ public class Test {
 
 			UserService userService=new UserServiceImpl();
 			
-//			List<User> users =userService.getUserAll();
-//			 
-//			System.out.println(users.size());
-//		
-		//	User user=userService.getUserById(2);
-			///System.out.println(user.toString());
-		
+
 			List<Oder> oders= userService.getSelectUserOder();
 			
 			for(Oder oder:oders){
