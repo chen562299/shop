@@ -10,6 +10,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.bwf.bean.User;
+import com.bwf.service.UserService;
+import com.bwf.service.UserServiceImpl;
+import com.sun.net.httpserver.Filter.Chain;
 
 @WebFilter(urlPatterns={"*.jsp"})
 public class LoginFilter implements Filter {
@@ -32,8 +38,10 @@ public class LoginFilter implements Filter {
 		
 		// 强制类型转换   
 		HttpServletRequest req = (HttpServletRequest)request;
-		HttpServletResponse rep = (HttpServletResponse)response;
+		HttpServletResponse res = (HttpServletResponse)response;
 		
+		String path = req.getContextPath();
+		String URL = req.getRequestURL().toString();
  
 	
 		//获取请求的url地址
@@ -43,19 +51,27 @@ public class LoginFilter implements Filter {
 		if(req.getRequestURL().toString().contains("login.jsp") ||req.getRequestURL().toString().contains("index.jsp")|| req.getRequestURL().toString().contains("bookcenter")){
 			//将请求转发到目的地  
 			chain.doFilter(request, response);
-		}else{
-			//判断是否存在用户
-			if(req.getSession().getAttribute("user") == null){
-				
-				String path = req.getContextPath();
+		}else {
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("user");
 			
-				rep.sendRedirect(path+"/login.jsp");
+			// 判断是否登录账户
+			if (session.getAttribute("user") != null) {
 				
-			}else{
-				//将请求转发到目的地  
-				chain.doFilter(request, response);
+				String id = session.getId();
+				
+				//是否其他地方登陆
+				if (user.getSession().equals(id)) {
+					//判断成功
+					chain.doFilter(request, response);
+				} else {
+					res.sendRedirect(path + "/" + "login.jsp");
+				}
+			} else {
+				res.sendRedirect(path + "/" + "login.jsp");
 			}
 		}
+
 	}
 
 	/**

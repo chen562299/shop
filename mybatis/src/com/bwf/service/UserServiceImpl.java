@@ -12,6 +12,13 @@ import com.bwf.mapper.UserMapper;
 import com.bwf.util.MybatisUtil;
 
 public class UserServiceImpl implements UserService {
+     UserDao dao= new UserDaoImpl();
+	
+	@Override
+	public User selectUser() {
+		
+		return dao.selectUser();
+	}
 	
 
 

@@ -9,4 +9,6 @@ import com.bwf.bean.User;
 
 public interface UserService {
 
+	public User selectUser();
+
 }

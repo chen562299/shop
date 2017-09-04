@@ -12,7 +12,9 @@
 	</resultMap>
 	-->
  
-  
+ <select id="selectUser" resultType="com.bwf.bean.User">
+  select * from user
+ </select> 
  
 
 </mapper>
