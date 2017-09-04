@@ -29,22 +29,30 @@ public class LoginFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
+		// 强制类型转换   
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse rep = (HttpServletResponse)response;
 		
+ 
+	
 		//获取请求的url地址
 		//System.out.println(req.getRequestURL());
 		
+			//判断是否需要安全过滤
 		if(req.getRequestURL().toString().contains("login.jsp") ||req.getRequestURL().toString().contains("index.jsp")|| req.getRequestURL().toString().contains("bookcenter")){
+			//将请求转发到目的地  
 			chain.doFilter(request, response);
 		}else{
-			if(req.getSession().getAttribute("userInfo") == null){
+			//判断是否存在用户
+			if(req.getSession().getAttribute("user") == null){
 				
 				String path = req.getContextPath();
 			
 				rep.sendRedirect(path+"/login.jsp");
 				
 			}else{
+				//将请求转发到目的地  
 				chain.doFilter(request, response);
 			}
 		}
