@@ -11,43 +11,7 @@
 	<result column="id"  property="userId"/>
 	</resultMap>
 	-->
-  
-   <resultMap type="com.bwf.bean.Oder" id="getUserOderMap">
-  	<id  column="oderId"  property="oderId"/>
-  	<result  column="oderTime"  property="oderTime"/>
-  	
-  	<association property="user" javaType="com.bwf.bean.User">
-  		<id  column="userId" property="userId" />
-  		<result column="userName" property="userName"/>
-  	</association>
-  </resultMap>
-  
-     <select id="getSelectUserOder" resultMap="getUserOderMap">
-     SELECT oder.*,userinfo.userName FROM oder INNER JOIN userinfo 
-   </select>
-  
-  <select id="getUserAll" resultType="com.bwf.bean.User">
-  	select * from userInfo 
-  </select>
-  
-   <select id="getUserById"  resultType="com.bwf.bean.User" >
-  	select * from userInfo where userId=#{userId}
-  </select>
-  
  
-   
-
-   
-   
-
-
-  <insert id="getAddUser" parameterType="com.bwf.bean.User" >
-  	<selectKey keyProperty="userId" keyColumn="userId" resultType="int" order="AFTER">
-  	select LAST_INSERT_ID()
-  	</selectKey>
-     INSERT INTO userInfo (userName,userPsw,userId) VALUES (#{userName},#{userPsw},DEFAULT);
-  </insert>
-
   
  
 

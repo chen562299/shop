@@ -13,37 +13,6 @@ import com.bwf.util.MybatisUtil;
 
 public class UserServiceImpl implements UserService {
 	
-	
-	UserDao userDao=new UserDaoImpl();
-	
-	
-	@Override
-	public List<User> getUserAll() {
-		
-		return   userDao.getUserAll();
-		
-	}
-	
-	@Override
-	public User getUserById(int id){
 
-		return userDao.getUserById(id);
-	}
-
-	@Override
-	public boolean getAddUser(User adduser) {
-		if(userDao.getAddUser(adduser)>0){
-			
-			return true;
-			}
-		return false;
-	}
-
-	@Override
-	public List<Oder> getSelectUserOder() {
-		return userDao.getSelectUserOder();
-		
-	}
-	
 
 }

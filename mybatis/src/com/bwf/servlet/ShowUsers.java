@@ -44,9 +44,9 @@ public class ShowUsers extends HttpServlet {
 		UserMapper userMapper= sqls.getMapper(UserMapper.class);
 		
 		UserService userService=new UserServiceImpl();
-		List<User> users =userService.getUserAll();
-		ServletRequest session =(ServletRequest) request.getSession();
-		session.setAttribute("users",users);
+//		List<User> users =userService.getUserAll();
+//		ServletRequest session =(ServletRequest) request.getSession();
+//		session.setAttribute("users",users);
 		
 	}
 

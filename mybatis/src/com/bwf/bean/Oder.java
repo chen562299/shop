@@ -4,23 +4,6 @@ public class Oder {
 	private	int oderId;
 	private String oderTime;
 	private User user;
-	
-	
-
-	
-	@Override
-	public String toString() {
-		return "Oder [oderId=" + oderId + ", oderTime=" + oderTime   + ", userId=" + user.getUserId() 
-		+ ", userName=" + user.getUserName()+ "]";
-	}
-	
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 	public int getOderId() {
 		return oderId;
 	}
@@ -33,5 +16,13 @@ public class Oder {
 	public void setOderTime(String oderTime) {
 		this.oderTime = oderTime;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+
 
 }
