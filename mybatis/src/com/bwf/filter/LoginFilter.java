@@ -11,9 +11,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet Filter implementation class LoginFilter
- */
 @WebFilter(urlPatterns={"*.jsp"})
 public class LoginFilter implements Filter {
 
@@ -24,9 +21,6 @@ public class LoginFilter implements Filter {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
@@ -41,14 +35,13 @@ public class LoginFilter implements Filter {
 		//获取请求的url地址
 		//System.out.println(req.getRequestURL());
 		
-		if(req.getRequestURL().toString().contains("login.jsp") || req.getRequestURL().toString().contains("bookcenter")){
+		if(req.getRequestURL().toString().contains("login.jsp") ||req.getRequestURL().toString().contains("index.jsp")|| req.getRequestURL().toString().contains("bookcenter")){
 			chain.doFilter(request, response);
 		}else{
 			if(req.getSession().getAttribute("userInfo") == null){
-				//表示未登录
-				String path = req.getContextPath();
-				//System.out.println(path);
 				
+				String path = req.getContextPath();
+			
 				rep.sendRedirect(path+"/login.jsp");
 				
 			}else{
