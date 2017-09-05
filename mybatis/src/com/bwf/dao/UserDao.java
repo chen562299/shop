@@ -7,5 +7,5 @@ import com.bwf.bean.User;
 
 public interface UserDao {
 	
-	public User selectUser();
+	public List<User> selectUser();
 }

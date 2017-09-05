@@ -18,7 +18,7 @@
   </environments>
   
   <mappers>
-   
+  
     <package name="com.bwf.mapper"/>
   </mappers>
   

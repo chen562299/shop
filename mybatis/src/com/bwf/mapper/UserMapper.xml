@@ -16,5 +16,9 @@
   select * from user
  </select> 
  
+ <select id="selectNotices" resultType="com.bwf.bean.Notice">
+  select * from notice
+ </select> 
+ 
 
 </mapper>

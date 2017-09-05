@@ -13,6 +13,14 @@ public class User{
 	private String sex;
 	private String birthday;
 	private String state;
+	
+	
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", name=" + name + ", userName=" + userName + ", userPsw=" + userPsw
+				+ ", userImage=" + userImage + ", session=" + session + ", email=" + email + ", telephone=" + telephone
+				+ ", sex=" + sex + ", birthday=" + birthday + ", state=" + state + "]";
+	}
 	public String getState() {
 		return state;
 	}

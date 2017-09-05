@@ -1,6 +1,8 @@
 package com.bwf.filter;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bwf.bean.Notice;
 import com.bwf.bean.User;
+import com.bwf.service.OtherService;
+import com.bwf.service.OtherServiceImpl;
 import com.bwf.service.UserService;
 import com.bwf.service.UserServiceImpl;
 import com.sun.net.httpserver.Filter.Chain;
@@ -40,10 +45,11 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse res = (HttpServletResponse)response;
 		
+		OtherService others=new OtherServiceImpl();
 		String path = req.getContextPath();
 		String URL = req.getRequestURL().toString();
  
-	
+		
 		//获取请求的url地址
 		//System.out.println(req.getRequestURL());
 		
@@ -62,7 +68,13 @@ public class LoginFilter implements Filter {
 				
 				//是否其他地方登陆
 				if (user.getSession().equals(id)) {
+					
+					//加载公告
+					List<Notice> notices= others.selectNotices();
+					session.setAttribute("notices", notices);
+					
 					//判断成功
+	
 					chain.doFilter(request, response);
 				} else {
 					res.sendRedirect(path + "/" + "login.jsp");

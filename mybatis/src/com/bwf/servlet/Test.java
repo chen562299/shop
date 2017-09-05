@@ -16,6 +16,7 @@ public class Test {
 	public static void main(String[] args) {
 		UserService userser=new UserServiceImpl();
 		
-		 User user=userser.selectUser();
+		List<User> users=userser.selectUser();
+		 System.out.println(users.size());
 	}
 }

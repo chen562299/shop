@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
      UserDao dao= new UserDaoImpl();
 	
 	@Override
-	public User selectUser() {
+	public List<User> selectUser() {
 		
 		return dao.selectUser();
 	}

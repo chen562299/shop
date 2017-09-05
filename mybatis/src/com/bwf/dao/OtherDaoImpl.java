@@ -1,26 +1,20 @@
 package com.bwf.dao;
 
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.bwf.bean.User;
+import com.bwf.bean.Notice;
 import com.bwf.mapper.UserMapper;
 import com.bwf.util.MybatisUtil;
 
-
-public class UserDaoImpl implements UserDao {
-	
+public class OtherDaoImpl implements OtherDao {
 	SqlSession sqls= MybatisUtil.getFactory().openSession();
 	UserMapper userp= sqls.getMapper(UserMapper.class);
-	
 	@Override
-	public List<User> selectUser() {
+	public List<Notice> selectNotices() {
 		
-		return userp.selectUser();
+		return userp.selectNotices();
 	}
-	
-
 
 }
