@@ -45,7 +45,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse res = (HttpServletResponse)response;
 		
-		OtherService others=new OtherServiceImpl();
+		//路径获取
 		String path = req.getContextPath();
 		String URL = req.getRequestURL().toString();
  
@@ -54,7 +54,12 @@ public class LoginFilter implements Filter {
 		//System.out.println(req.getRequestURL());
 		
 			//判断是否需要安全过滤
-		if(req.getRequestURL().toString().contains("login.jsp") ||req.getRequestURL().toString().contains("index.jsp")|| req.getRequestURL().toString().contains("bookcenter")){
+		if(req.getRequestURL().toString().contains("login.jsp") 
+				||req.getRequestURL().toString().contains("register1.jsp")
+				||req.getRequestURL().toString().contains("index.jsp")
+				|| req.getRequestURL().toString().contains("bookcenter")
+				||req.getRequestURL().toString().contains("register.jsp")
+				){
 			//将请求转发到目的地  
 			chain.doFilter(request, response);
 		}else {
@@ -68,11 +73,7 @@ public class LoginFilter implements Filter {
 				
 				//是否其他地方登陆
 				if (user.getSession().equals(id)) {
-					
-					//加载公告
-					List<Notice> notices= others.selectNotices();
-					session.setAttribute("notices", notices);
-					
+				
 					//判断成功
 	
 					chain.doFilter(request, response);

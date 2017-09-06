@@ -4,19 +4,27 @@ package com.bwf.servlet;
 
 import java.util.List;
 
+import com.bwf.bean.Classify;
+import com.bwf.bean.Goods;
+import com.bwf.service.OtherService;
+import com.bwf.service.OtherServiceImpl;
 
-
-import com.bwf.bean.Oder;
-import com.bwf.bean.User;
-import com.bwf.service.UserService;
-import com.bwf.service.UserServiceImpl;
 
 
 public class Test {
 	public static void main(String[] args) {
-		UserService userser=new UserServiceImpl();
+		OtherService others=new OtherServiceImpl();
 		
-		List<User> users=userser.selectUser();
-		 System.out.println(users.size());
+		List<Classify> cassifys=others.selectClassify();
+		
+		List<Goods> goods=others.selectGoods();
+		
+		List<Goods> goodsGaodian=others.selectGoodsGaodian();
+		
+		for(Goods g:goodsGaodian)
+			 System.out.println(g.toString());
+		
+//		for(Classify c:cassifys)
+//		 System.out.println(c.getCname());
 	}
 }

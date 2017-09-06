@@ -20,6 +20,43 @@ public class UserServiceImpl implements UserService {
 		return dao.selectUser();
 	}
 	
+	//登录账号	
+	@Override
+	public User login(User user) {
+			 
+		return dao.selectUserByNameandPsw(user);
+	}
+		
+	//修改密码
+	@Override
+	public boolean ChangePassword(User user) {
+		if(dao.ChangePassword(user)>0){
+			return true;
+		}
+		return false;
+	}
+	//修改session
+	@Override
+	public void updateSession(User user) {
+		dao.updateSession(user);
+		
+	}
+		//修改会员信息
+	public int upDateUser(User user) {
+		
+		return dao. upDateUser(user);
+	}
+		//注册
+	public boolean register(User user) {
+		if(dao.register(user)>0){
+			return true;
+		}
+		return false;
+	}
 
+	public int selectByUserName(User user) {
+		  int x=dao.selectByUserName(user);
+		return x;
+	}
 
 }
