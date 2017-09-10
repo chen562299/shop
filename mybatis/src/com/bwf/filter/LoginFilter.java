@@ -22,7 +22,7 @@ import com.bwf.service.UserService;
 import com.bwf.service.UserServiceImpl;
 import com.sun.net.httpserver.Filter.Chain;
 
-@WebFilter(urlPatterns={"*.jsp"})
+@WebFilter(urlPatterns={"/person/*"})
 public class LoginFilter implements Filter {
 
     /**
@@ -55,7 +55,7 @@ public class LoginFilter implements Filter {
 		
 			//判断是否需要安全过滤
 		if(req.getRequestURL().toString().contains("login.jsp") 
-				||req.getRequestURL().toString().contains("register1.jsp")
+				||req.getRequestURL().toString().contains("introduction.jsp")
 				||req.getRequestURL().toString().contains("index.jsp")
 				|| req.getRequestURL().toString().contains("bookcenter")
 				||req.getRequestURL().toString().contains("register.jsp")
@@ -78,9 +78,11 @@ public class LoginFilter implements Filter {
 	
 					chain.doFilter(request, response);
 				} else {
+					session.removeAttribute("user");
 					res.sendRedirect(path + "/" + "login.jsp");
 				}
 			} else {
+				session.removeAttribute("user");
 				res.sendRedirect(path + "/" + "login.jsp");
 			}
 		}

@@ -2,7 +2,13 @@
 	pageEncoding="utf-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
+<script src="js/jquery.js"></script>
+<script >
+if(self!=top){
+	parent.window.location.replace(window.location.href);
+}
 
+</script>
 <html>
 
 	<head lang="en">
@@ -88,6 +94,7 @@
 	
 					 <a href="register.jsp" class="zcnext am-fr am-btn-default">注册</a> <br />
 				</div>
+				<a href="index.jsp" target="_top" style="position: relative;left: 132px;top: -20px;  " class="h"> 返回主页 </a>
 				</div>
 		</div>
 	</div>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bwf.bean.Classify;
 import com.bwf.bean.Goods;
+import com.bwf.bean.MainClassify;
 import com.bwf.bean.Notice;
 import com.bwf.dao.OtherDao;
 import com.bwf.dao.OtherDaoImpl;
@@ -18,19 +19,30 @@ public class OtherServiceImpl implements OtherService {
 		return dao.selectNotices();
 	}
 	@Override
-	public List<Classify> selectClassify() {
+	public List<Classify> selectClassify(int mcid) {
 		
-		return dao.selectClassify();
+		return dao.selectClassify(mcid);
 	}
 	@Override
 	public List<Goods> selectGoods() {
 		
 		return dao.selectGoods();
 	}
+
 	@Override
-	public List<Goods> selectGoodsGaodian() {
+	public List<Goods> selectCGoods(String cid) {
 		
-		return dao.selectGoodsGaodian();
+		return dao.selectCGoods(cid);
+	}
+	@Override
+	public List<MainClassify> selectMainClassify() {
+		
+		return dao.selectMainClassify();
+	}
+	@Override
+	public List<Classify> selectClassify1() {
+		
+		return dao.selectClassify1();
 	}
 
 }

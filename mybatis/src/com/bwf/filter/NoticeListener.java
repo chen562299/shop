@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bwf.bean.Classify;
 import com.bwf.bean.Goods;
+import com.bwf.bean.MainClassify;
 import com.bwf.bean.Notice;
 import com.bwf.service.OtherService;
 import com.bwf.service.OtherServiceImpl;
@@ -57,10 +59,34 @@ public class NoticeListener implements Filter {
 		//加载新品/热卖
 		List<Goods> hotGoods=others.selectGoods();
 		session.setAttribute("goods", hotGoods);
+
+	
 		
-		//加载糕点分类
-		List<Goods> goodsGaodian=others.selectGoodsGaodian();
-		session.setAttribute("goodsGaodian", goodsGaodian);
+		//加载分类
+		List<Classify> cassifys1=others.selectClassify1();
+		for(Classify c:cassifys1){
+			String cid=c.getCid();
+			List<Goods> classgoods=others.selectCGoods(cid);
+			c.setGoods(classgoods);
+		}
+		session.setAttribute("cassifys", cassifys1);
+		
+		
+		//加载主要分类
+		List<MainClassify> maincassifys=others.selectMainClassify();
+		for(MainClassify m:maincassifys){
+			int mcid=m.getMcid();
+			//加载分类
+			List<Classify> cassifys=others.selectClassify(mcid);
+			for(Classify c:cassifys){
+				String cid=c.getCid();
+				List<Goods> classgoods=others.selectCGoods(cid);
+				c.setGoods(classgoods);
+			}
+			m.setClassify(cassifys);
+		}
+		session.setAttribute("maincassifys", maincassifys);
+		
 		//过滤回放
 		chain.doFilter(request, response);
 	}

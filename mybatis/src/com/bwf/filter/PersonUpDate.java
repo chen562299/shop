@@ -41,7 +41,18 @@ public class PersonUpDate implements Filter {
 		//每次数据的更新
 		 user=userService.login(user);
 		
+		 String str=user.getTelephone();
+			//电话号码隐藏
+	      String x=str.substring(0,3)+"****"+str.substring(str.length()-4,str.length());
+	      
+	      user.setTelephone(x);
+	      
+	  
+		 
+		 
 		session.setAttribute("user", user);
+		
+		
 		
 		chain.doFilter(request, response);
 	}

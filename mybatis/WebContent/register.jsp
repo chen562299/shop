@@ -11,32 +11,46 @@
 		<meta name="format-detection" content="telephone=no">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-		<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+        <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+		<link rel="stylesheet" href="css/amazeui.min.css" />
 		<link href="css/dlstyle.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery.min.js" type="text/javascript"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/amazeui.min.js"></script>
 		<script >
+		
 		    //判断用户名是否存在
-		    $(function(){
-		    	var userNameIfTrue = false
-		        var passwordIfTrue = true
-		        var passwordRepeatIfTrue = true
-		        var name=true
+		   $(function(){
+		        var userNameIfTrue = false
+		        var passwordIfTrue = false
+		        var passwordRepeatIfTrue = false
+		        var name = false
 		    	var userName = function(){
+		        	
 		    		$.ajax({
 		    			url:"RegisterServlet",
 		    			dataType:"text",
 		    			data:{userNameAjax:$(".userName").val()},
 		    		    success:function(result){
-		    		    	if(result=="yes"){
+		    		    	
+		    		    	
+		    		    	if($(".userName").val().length==0){
+		    		    		$("#user").remove();
+		    		    		userNameIfTrue = false
+		    		    		$("#userName").after("<a style='color:red' id='user'>用户名不能为空</a>");
+		    		    	}
+		    		    	else if(result=="yes"){
 		    		    		$("#user").remove();
 		    		    		userNameIfTrue = false
 		    		    		$("#userName").after("<a style='color:red' id='user'>用户名已存在</a>");
 		    		    		
-		    		    	}else{
+		    		    	}
+		    		    	else{
+		    		    		$("#user").remove();
 		    		    		userNameIfTrue = true
 		    		    	}
+		    		    	
+		    		    	
 		    		    				    		    				    		    	
 		    		    }
 		    		})
@@ -51,6 +65,9 @@
 		    			passwordIfTrue = false
 		    			$("#passwordDiv").after("<a style='color:red' id='pass'>密码长度为6位</a>");
 		    			
+		    		}else{
+		    			$("#pass").remove();
+		    			passwordIfTrue = true;
 		    		}
 		    					    				    		
 		    	}
@@ -64,45 +81,64 @@
 		    			passwordRepeatIfTrue = false
 		    			$("#passwordRepeatDiv").after("<a style='color:red' id='passw'>密码不一致</a>");
 		    			
+		    		}else{
+		    			$("#passw").remove();
+		    			passwordRepeatIfTrue = true;
 		    		}
 		    				    				    		
 		    	}
 		    	//判断name
-		    	function(){
-		    		if($(".name").val()==null){
-		    			$("#name1").remove();
+		    	 var nameDiv = function(){
+		    		
+		    		if($("#truename").val().length==0){
+		    			$("#nameNull").remove();
 		    			name=false
-		    			$("#Name").after("<a style='color:red' id='name1'>姓名不为空</a>");
-		    			
-		    		}
+		    			$("#nameDiv").after("<a style='color:red' id='nameNull'>姓名不为空</a>");
+				    }else{
+				    	$("#nameNull").remove();
+				    	name=true;
+				    }
+				    	
+				    
 		    	}
 		    	//消除提醒语句
-		    	$(".")
+		    	$("#truename").click(function(){
+		    	
+		    		$("#nameNull").remove();
+		    	})
 		    	$(".userName").click(function(){
 		    		
 		    		$("#user").remove();
 		    	})
 		    	
 		    	$(".password").click(function(){
-		    		passwordIfTrue = true
+		    		
 		    		$("#pass").remove();
 		    	})
 		    	
 		    	$(".passwordRepeat").click(function(){
-		    		passwordRepeatIfTrue = true
+		    		
 		    		$("#passw").remove();
 		    	})
 		    	
 		    	//判断是否提交
-		         	$("#sub").click(function(){
-		    		
+		         $("#sub").click(function(){
+		        	
 		    		userName();
 		    		password();
 		    		passwordRepeat();
-		    		name();
-		    		if(userNameIfTrue==false||passwordIfTrue==false||passwordRepeatIfTrue==false){
-		    			return false;
+		    		nameDiv();
+		    		if((userNameIfTrue == true) && (passwordIfTrue == true) && (passwordRepeatIfTrue == true)&&(name==true)){
+		    		
+		    			return true;
+		    		}else{
+		    		
+		    			return false
 		    		}
+		    		
+		    		
+		  
+		         
 		    	})
 		    	
 		    	
@@ -147,6 +183,10 @@
 								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
 								    <input type="password" name="confirmPassword" class="passwordRepeat" id="passwordRepeat" placeholder="确认密码">
                  </div>	
+                  <div class="user-pass" id="nameDiv">
+								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
+								    <input type="text" name="name" class="passwordRepeat" id="truename" placeholder="输入姓名">
+                 </div>	
                  		
                 
                  
@@ -154,7 +194,7 @@
 										<div class="am-cf">
 											<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl" id="sub">
 										</div>
-					<a href="login.jsp" target="_top" style="margin-left: 110px; " class="h"> 返回登录 </a>
+					<a href="login.jsp" target="_top" style="margin-left: 130px; " class="h"> 返回登录 </a>
 								</div>
                        </form>
 								

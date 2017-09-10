@@ -10,7 +10,7 @@
 	<!-- <resultMap type="com.bwf.bean.User" id="getUserAllMap"> <result column="id" 
 		property="userId"/> </resultMap> -->
 
-
+	<!-- 商品-类型-映射 -->
 	<resultMap id="selectGoodsClassMap" type="com.bwf.bean.Goods">
 
 		<!-- 先要配置用户表自己的字段 -->
@@ -29,18 +29,74 @@
 
 		</collection>
 	</resultMap>
+	
+	
+	
+	<!--类型-商品-映射  -->
+	<resultMap id="selectClassGoodsMap" type="com.bwf.bean.Classify">
 
-	<!--//注册用户 -->
+		<!-- 先要配置用户表自己的字段 -->
+			<id column="cid" property="cid" />
+			<result column="cname" property="cname" />
+		
+		
+		<!-- 配置类型对应的商品(一个类型对应的是多个商品) -->
+		<collection property="goods" ofType="com.bwf.bean.Goods">
+		<id column="goodsId" property="goodsId" />
+		<result column="goodsName" property="goodsName" />
+		<result column="goodsPrice" property="goodsPrice" />
+		<result column="goodsPhoto" property="goodsPhoto" />
+		<result column="goodsDescribe" property="goodsDescribe" />
+		<result column="isHot" property="isHot" />
+		<result column="isOut" property="isOut" />
+		<result column="cid" property="cid" />
+
+		</collection>
+	</resultMap>
+	
+	
+	<!--主类型-类型-映射  -->
+	<resultMap id="selectMainClassMap" type="com.bwf.bean.MainClassify">
+
+		<!-- 先要配置用户表自己的字段 -->
+			<id column="mcid" property="mcid" />
+			<result column="mcname" property="mcname" />
+		
+		
+		<!-- 配置类型对应的商品(一个类型对应的是多个商品) -->
+		<collection property="classify" ofType="com.bwf.bean.Classify">
+		<id column=" cid" property=" cid" />
+		<result column="cname" property="cname" />
+		<result column="mcid" property="mcid" />
+		
+				<collection property="goods" ofType="com.bwf.bean.Goods">
+				<id column="goodsId" property="goodsId" />
+				<result column="goodsName" property="goodsName" />
+				<result column="goodsPrice" property="goodsPrice" />
+				<result column="goodsPhoto" property="goodsPhoto" />
+				<result column="goodsDescribe" property="goodsDescribe" />
+				<result column="isHot" property="isHot" />
+				<result column="isOut" property="isOut" />
+				<result column="cid" property="cid" />
+
+				</collection>
+
+		</collection>
+	</resultMap>
+
+	<!--注册用户 -->
 	<insert id="register" parameterType="com.bwf.bean.User">
-		INSERT INTO USER (userName,userPsw)
-		VALUES (#{userName},#{userPsw})
-
+		INSERT INTO USER (name,userName,userPsw)
+		VALUES (#{name},#{userName},#{userPsw})
 	</insert>
+	
+	
 	<!-- 验证用户名是否重复 -->
 	<select id="selectByUserName" parameterType="com.bwf.bean.User"
 		resultType="int">
 		select count(*) from user where userName=#{userName}
 	</select>
+	
 	<!-- 添加用户基本信息 -->
 	<update id="upDateUser" parameterType="com.bwf.bean.User">
 		update user set
@@ -50,7 +106,7 @@
 
 
 
-
+   
 
 	<!-- 查询用户 -->
 	<select id="selectUser" resultType="com.bwf.bean.User">
@@ -60,20 +116,28 @@
 	<select id="selectNotices" resultType="com.bwf.bean.Notice">
 		select * from notice
 	</select>
-	<!-- 查看最后3个类型 -->
-	<select id="selectClassify" resultType="com.bwf.bean.Classify">
-		select * from classify order by cid DESC limit 3
+    <!-- 根据类查商品 -->
+	<select id="selectCGoods" resultType="com.bwf.bean.Goods">
+	select * from goods where cid=#{cid} order by cid DESC limit 12
 	</select>
+	
+	<!-- 查看最后10个类型 -->
+	<select id="selectClassify" resultMap="selectClassGoodsMap">
+		select * from classify where mcid=#{mcid} order by cid DESC limit 5
+	</select>
+	
+	<!-- 查看最后10个类型 -->
+	<select id="selectClassify1" resultMap="selectClassGoodsMap">
+		select * from classify  order by cid DESC limit 10
+	</select>
+	
+	
 	<!-- 查看最后3个 新品/热卖 -->
 	<select id="selectGoods" resultMap="selectGoodsClassMap">
 		SELECT * from goods,classify WHERE goods.cid=classify.cid and isHot="是"
 		order by goodsId DESC limit 3
 	</select>
-	<!-- 查看最后6个 糕点 -->
-	<select id="selectGoodsGaodian" resultMap="selectGoodsClassMap">
-		SELECT * from goods,classify WHERE goods.cid=classify.cid and
-		goods.cid=1 order by goodsId DESC limit 6
-	</select>
+
 
 	<!-- 登录 -->
 	<select id="selectUserByNameandPsw" resultType="com.bwf.bean.User"
@@ -84,9 +148,16 @@
 	<update id="ChangePassword" parameterType="com.bwf.bean.User">
 		UPDATE user SET userPsw=#{userPsw} WHERE uid=#{uid}
 	</update>
-
+	<!-- 更新session -->
 	<update id="updateSession" parameterType="com.bwf.bean.User">
 		UPDATE user SET session=#{session} WHERE uid=#{uid}
 	</update>
+	
+		<!-- 查看主类型 -->
+	<select id="selectMainClassify" resultMap="selectMainClassMap">
+		select * from mainclassify order by mcid DESC
+	</select>
+	
+
 
 </mapper>

@@ -11,14 +11,14 @@ public class Goods {
 	private String  cid;
 	private Classify classify;
 	
-	
+
 	
 	
 	@Override
 	public String toString() {
 		return "Goods [goodsId=" + goodsId + ", goodsName=" + goodsName + ", goodsPrice=" + goodsPrice + ", goodsPhoto="
 				+ goodsPhoto + ", goodsDescribe=" + goodsDescribe + ", isHot=" + isHot + ", isOut=" + isOut + ", cid="
-				+ cid + ", classify=" + classify.getCname() + "]";
+				+ cid + "]";
 	}
 	public String getCid() {
 		return cid;

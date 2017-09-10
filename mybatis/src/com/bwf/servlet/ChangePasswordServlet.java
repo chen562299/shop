@@ -34,6 +34,11 @@ public class ChangePasswordServlet extends HttpServlet {
 		String pwd = request.getParameter("mpass");		
 		String newpass = request.getParameter("newpass");		
 		String renewpass =request.getParameter("renewpass");
+		
+		System.err.println(pwd);
+		System.err.println(newpass);
+		System.err.println(renewpass);
+		
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		UserService userService = new UserServiceImpl();
@@ -45,15 +50,20 @@ public class ChangePasswordServlet extends HttpServlet {
 			request.getRequestDispatcher("password.jsp").forward(request, response);
 		}
 		else{
+			
 			if(newpass.equals(renewpass)){
-				user.setUserPsw(renewpass);				
-				if(userService.ChangePassword(user)){
-					System.out.println("user.getUserPsw()"+ user.getUid());
-					System.out.println(newpass);
-					
+				if(newpass.equals(renewpass)){
+					user.setUserPsw(renewpass);				
+					if(userService.ChangePassword(user)){
+						
+					   session.removeAttribute("user");
 					response.sendRedirect("chenggong.jsp");
-					
+					}
 				}
+			}else{
+				request.setAttribute("usermimaError", "密码不一致");
+				
+				request.getRequestDispatcher("password.jsp").forward(request, response);
 			}
 		}
 		
